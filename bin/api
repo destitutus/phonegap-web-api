@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+/**
+ * Copyright Suchkov Dmitrii
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+'use strict';
+var express = require('express');
+var http = require('http');
+var config = require('../config');
+var domain = require('domain');
+var log = require('../lib/logger')('api');
+
+var app = express();
+
+// Set max connections
+http.globalAgent.maxSockets = 1000;
+// Set the process title
+process.title = 'phonegap-api';
+
+app.set('port', config.api.port || 1200);
+app.use(express.bodyParser());
+// Setup domain fo requests
+function setupDomains(req, res, next) {
+    var d = domain.create();
+    domain.active = d;
+    d.add(req);
+    d.add(res);
+    d.on('error', function(err) {
+        log.error('Domain catch error', err);
+        req.next(err);
+    });
+    res.on('end', function() {
+        d.dispose();
+    });
+    d.run(next);
+}
+app.use(setupDomains);
+
+http.createServer(app).listen(app.get('port'), function () {
+    log.info('Phonegap api started on port ' + app.get('port'));
+});
+
+process.on('uncaughtException', function (err) {
+    log.error('Caught uncaught exception', err);
+});
