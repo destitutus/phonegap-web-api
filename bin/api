@@ -23,7 +23,7 @@ var messages = require('../lib/messages');
 
 var me = require('../lib/me').me;
 var init = require('../lib/init').init;
-var build = require('../lib/build').build;
+var build = require('../lib/build');
 var queue = require('../lib/queue').start;
 
 var app = express();
@@ -35,13 +35,24 @@ process.title = 'phonegap-api';
 
 app.set('port', config.api.port || 1200);
 
+app.use(function (req, res, next) {
+    req.rawBody = '';
+    req.setEncoding('utf8');
+    req.on('data', function (chunk) {
+        req.rawBody += chunk;
+    });
+    req.on('end', function () {
+        next();
+    });
+});
+
 app.get('/me/:key', function (req, res) {
     res.contentType('application/json');
     me(req.params.key).then(function (data) {
         res.send(200, messages.success(data) );
     }, function (err) {
         res.send(200, messages.error(err));
-    })
+    });
 });
 
 app.get('/init/:user/:project', function (req, res) {
@@ -50,16 +61,27 @@ app.get('/init/:user/:project', function (req, res) {
         res.send(200, messages.success(data) );
     }, function (err) {
         res.send(200, messages.error(err));
-    })
+    });
 });
 
-app.get('/build/:user/:project/:key', function (req, res) {
+app.get('/info/:user/:project/:uid', function (req, res) {
     res.contentType('application/json');
-    build(req.params.user, req.params.project, req.params.key).then(function (data) {
+    build.buildInfo(req.params.user, req.params.project, req.params.uid).then(function (data) {
         res.send(200, messages.success(data) );
     }, function (err) {
         res.send(200, messages.error(err));
-    })
+    });
+});
+
+app.post('/build/:user/:project/:uid/:key', function (req, res) {
+    res.contentType('application/json');
+    var params = JSON.parse(req.rawBody);
+    build.build(req.params.user, req.params.project, req.params.uid, req.params.key, params).then(function (data) {
+        res.send(200, messages.success(data) );
+    }, function (err) {
+        log.error('error:build', err);
+        res.send(200, messages.error(err));
+    });
 });
 
 app.use(function(err, req, res, next){
