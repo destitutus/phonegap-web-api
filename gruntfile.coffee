@@ -19,7 +19,6 @@ module.exports = (grunt) ->
     jshint:
       all:
         src: [
-          'index.js'
           'lib/**/*.js'
           'bin/api'
           'test/**/*.js'
