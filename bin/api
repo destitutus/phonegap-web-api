@@ -19,11 +19,7 @@ var express = require('express');
 var http = require('http');
 var config = require('../config');
 var log = require('../lib/logger')('api');
-var messages = require('../lib/messages');
-
-var me = require('../lib/me').me;
-var init = require('../lib/init').init;
-var build = require('../lib/build');
+var route = require('../lib/route');
 var queue = require('../lib/queue').start;
 
 var app = express();
@@ -35,59 +31,7 @@ process.title = 'phonegap-api';
 
 app.set('port', config.api.port || 1200);
 
-app.use(function (req, res, next) {
-    req.rawBody = '';
-    req.setEncoding('utf8');
-    req.on('data', function (chunk) {
-        req.rawBody += chunk;
-    });
-    req.on('end', function () {
-        next();
-    });
-});
-
-app.get('/me/:key', function (req, res) {
-    res.contentType('application/json');
-    me(req.params.key).then(function (data) {
-        res.send(200, messages.success(data) );
-    }, function (err) {
-        res.send(200, messages.error(err));
-    });
-});
-
-app.get('/init/:user/:project', function (req, res) {
-    res.contentType('application/json');
-    init(req.params.user, req.params.project).then(function (data) {
-        res.send(200, messages.success(data) );
-    }, function (err) {
-        res.send(200, messages.error(err));
-    });
-});
-
-app.get('/info/:user/:project/:uid', function (req, res) {
-    res.contentType('application/json');
-    build.buildInfo(req.params.user, req.params.project, req.params.uid).then(function (data) {
-        res.send(200, messages.success(data) );
-    }, function (err) {
-        res.send(200, messages.error(err));
-    });
-});
-
-app.post('/build/:user/:project/:uid/:key', function (req, res) {
-    res.contentType('application/json');
-    var params = JSON.parse(req.rawBody);
-    build.build(req.params.user, req.params.project, req.params.uid, req.params.key, params).then(function (data) {
-        res.send(200, messages.success(data) );
-    }, function (err) {
-        log.error('error:build', err);
-        res.send(200, messages.error(err));
-    });
-});
-
-app.use(function(err, req, res, next){
-    log.error('error', err);
-    res.send(500, messages.error(err));
-});
+route.route(app);
 
 http.createServer(app).listen(app.get('port'), function () {
     log.info('Phonegap api started on port ' + app.get('port'));
