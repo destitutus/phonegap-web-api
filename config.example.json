@@ -1,0 +1,47 @@
+{
+    "api" : {
+        "port" : 1200
+    },
+
+    "fs": {
+        "project": "/mnt/data/accounts/{{ user }}/{{ project }}/branches/master",
+        "tmp" : "/tmp/{{ file }}"
+    },
+
+    "rabbitmq": {
+        "host": "localhost",
+        "port": 5672,
+        "login": "guest",
+        "password": "guest",
+        "vhost": "/",
+        "tasks": {
+            "name": "phonegap-tasks",
+            "autoDelete" : false,
+            "durable": true,
+            "type": "direct"
+        },
+        "autoTasks": {
+            "name": "phonegap-auto-tasks",
+            "autoDelete" : false,
+            "durable": true,
+            "type": "direct"
+        }
+    },
+
+    "database": {
+        "connection": "mongodb://127.0.0.1:27017/acv2"
+    },
+
+    "log4js": {
+        "appenders": [
+            {
+                "type": "dateFile",
+                "filename": "phonegap-web-api.log",
+                "pattern": "-yyyy-MM-dd",
+                "alwaysIncludePattern": true
+            }
+        ],
+        "replaceConsole": true,
+        "level": "TRACE"
+    }
+}
