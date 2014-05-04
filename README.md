@@ -14,13 +14,13 @@ Get user information by authentication token
 Input:
 
 ```bash
-curl localhost:1200/me/onEjRpxyaVwujA5xfyFa1
+curl localhost:1200/me/TOKEN_HERE
 ```
 
 Output:
 
 ```json
-{"code":1,"result":{"link":"/api/v1/me","username":null,"email":"didrive@mail.ru","keys":{"link":"api/v1/keys","ios":{"link":"/api/v1/keys/ios","all":[{"link":"/api/v1/keys/ios/173653","title":"Dmitrii","default":true,"id":173653}]},"android":{"link":"/api/v1/keys/android","all":[{"link":"/api/v1/keys/android/54309","title":"test","default":false,"id":54309},{"link":"/api/v1/keys/android/55493","title":"123qweASD","default":false,"id":55493}]},"blackberry":{"link":"/api/v1/keys/blackberry","all":[]}},"id":481645,"apps":{"link":"/api/v1/apps","all":[{"link":"/api/v1/apps/903742","title":"Application name","id":903742,"role":"owner"}]}}}
+{"code":1,"result":{"link":"/api/v1/me","username":null,"email":"did*@*.ru","keys":{"link":"api/v1/keys","ios":{"link":"/api/v1/keys/ios","all":[{"link":"/api/v1/keys/ios/173653","title":"Dmitrii","default":true,"id":173653}]},"android":{"link":"/api/v1/keys/android","all":[{"link":"/api/v1/keys/android/54309","title":"test","default":false,"id":54309},{"link":"/api/v1/keys/android/55493","title":"123qweASD","default":false,"id":55493}]},"blackberry":{"link":"/api/v1/keys/blackberry","all":[]}},"id":481645,"apps":{"link":"/api/v1/apps","all":[{"link":"/api/v1/apps/903742","title":"Application name","id":903742,"role":"owner"}]}}}
 ```
 
 #### /init/:user/:project
