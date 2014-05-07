@@ -82,3 +82,36 @@ Output:
 ```json
 {"code":1, "result":{"status":{"webos":"skip","symbian":"skip","winphone":"complete","ios":"complete","android":"error","blackberry":"skip"},"hydrates":false,"build_count":2,"description":"Application description","link":"/api/v1/apps/903742","icon":{"link":"/api/v1/apps/903742/icon","filename":"icon-114x114.png"},"title":"Application name","repo":null,"debug":true,"package":"com.username.projectname","keys":{"ios":{"link":"/api/v1/keys/ios/173653","title":"Dmitrii","default":true,"id":173653},"android":{"link":"/api/v1/keys/android/54309","title":"test","default":false,"id":54309},"blackberry":null},"private":false,"error":{"android":"Keystore was tampered with, or password was incorrect"},"collaborators":{"link":"/api/v1/apps/903742/collaborators","pending":[],"active":[{"link":"/api/v1/apps/903742/collaborators/877160","person":"didrive@mail.ru","id":877160,"role":"admin"}]},"version":"0.0.1","id":903742,"download":{"winphone":"/api/v1/apps/903742/winphone","ios":"/api/v1/apps/903742/ios"},"phonegap_version":"3.3.0","role":"admin"}}
 ```
+
+## RabbitMQ setup
+
+####Exchanges
+
+* phonegap-tasks
+
+    Type:direct
+    durable:true
+
+* phonegap-auto-tasks
+
+    Type:direct
+    durable:true
+
+####Queues
+
+* phonegap-auto-tasks
+
+    x-message-ttl:	10000
+    x-dead-letter-exchange:	phonegap-tasks
+    x-dead-letter-routing-key:	#
+    durable:	true
+
+* phonegap-tasks
+
+    durable:	true
+
+
+####Bindings
+
+* phonegap-tasks => # => phonegap-tasks
+* phonegap-auto-tasks => # => phonegap-auto-tasks

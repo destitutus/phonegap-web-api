@@ -14,6 +14,7 @@
         "login": "guest",
         "password": "guest",
         "vhost": "/",
+        "heartbeat": 30,
         "tasks": {
             "name": "phonegap-tasks",
             "autoDelete" : false,
