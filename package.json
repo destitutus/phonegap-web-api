@@ -16,7 +16,7 @@
     "q": "~1.0.1",
     "phonegap-build-api": "~0.3.3",
     "node-uuid": "~1.4.1",
-    "amqp": "~0.2.0"
+    "amqplib": "~0.2.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
