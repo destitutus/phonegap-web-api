@@ -1,6 +1,6 @@
 {
   "name": "phonegap-web-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "author": "Dmitrii Suchkov <dsuchkov@applicationcraft.com>",
   "bin": {},
@@ -8,15 +8,15 @@
     "start": "node bin/api"
   },
   "dependencies": {
-    "express": "~3.4.6",
-    "lodash": "~2.2.1",
-    "optimist": "~0.6.0",
-    "mongodb": "~1.3.23",
-    "log4js": "~0.6.10",
-    "q": "~1.0.1",
-    "phonegap-build-api": "~0.3.3",
-    "node-uuid": "~1.4.1",
-    "amqplib": "~0.2.0"
+    "amqplib": "0.2.0",
+    "express": "3.4.8",
+    "lodash": "2.2.1",
+    "log4js": "0.6.14",
+    "mongodb": "1.3.23",
+    "node-uuid": "1.4.1",
+    "optimist": "0.6.1",
+    "phonegap-build-api": "0.3.3",
+    "q": "1.0.1"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
