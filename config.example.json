@@ -30,7 +30,7 @@
     },
 
     "database": {
-        "connection": "mongodb://127.0.0.1:27017/acv2"
+        "connection": "mongodb://acv2:codio@127.0.0.1:27017/acv2"
     },
 
     "log4js": {
