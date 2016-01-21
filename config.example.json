@@ -5,7 +5,7 @@
 
     "fs": {
         "project": "/mnt/data/accounts/{{ user }}/{{ project }}/branches/master",
-        "lxcProject": "/mnt/projects/{{ fs }}/{{ user }}_{{ project }}/data/project-data/workspace",
+        "lxcProject": "/mnt/projects/{{ fs }}/{{ project }}/data/project-data/workspace",
         "tmp" : "/tmp/{{ file }}"
     },
 
