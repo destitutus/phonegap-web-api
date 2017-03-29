@@ -5,6 +5,7 @@
 
     "fs": {
         "project": "/mnt/data/accounts/{{ user }}/{{ project }}/branches/master",
+        "lxcProject": "/mnt/projects/{{ fs }}/{{ project }}/data/project-data/workspace",
         "tmp" : "/tmp/{{ file }}"
     },
 
@@ -36,10 +37,8 @@
     "log4js": {
         "appenders": [
             {
-                "type": "dateFile",
-                "filename": "phonegap-web-api.log",
-                "pattern": "-yyyy-MM-dd",
-                "alwaysIncludePattern": true
+                "type": "file",
+                "filename": "phonegap-web-api.log"
             }
         ],
         "replaceConsole": true,

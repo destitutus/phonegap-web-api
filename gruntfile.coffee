@@ -45,4 +45,4 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'test', ['mochacov:unit']
 
-  grunt.registerTask 'default', ['jshint', 'test']
+  grunt.registerTask 'default', ['jshint']
