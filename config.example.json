@@ -35,13 +35,13 @@
     },
 
     "log4js": {
-        "appenders": [
-            {
+        "appenders": {
+            "phonegap": {
                 "type": "file",
                 "filename": "phonegap-web-api.log"
             }
-        ],
-        "replaceConsole": true,
-        "level": "TRACE"
+        },
+        "categories": { "default": { "appenders": ["phonegap"], "level": "trace" } },
+        "replaceConsole": true
     }
 }

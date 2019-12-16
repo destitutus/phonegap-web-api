@@ -9,23 +9,23 @@
   },
   "dependencies": {
     "amqplib": "0.2.0",
-    "express": "3.4.8",
-    "lodash": "2.2.1",
-    "log4js": "0.6.14",
-    "mongodb": "2.2.25",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "log4js": "^6.1.0",
+    "mongodb": "^3.4.0",
     "node-uuid": "1.4.1",
     "optimist": "0.6.1",
-    "phonegap-build-api": "0.3.3",
+    "phonegap-build-api": "^1.0.0",
     "q": "1.0.1"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt": "~0.4.1",
     "chai": "~1.8.1",
-    "sinon": "~1.7.3",
-    "sandboxed-module": "~0.3.0",
+    "grunt": "^1.0.4",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-mocha-cov": "0.4.0",
     "grunt-simple-mocha": "~0.4.0",
-    "sinon-chai": "~2.4.0",
-    "grunt-mocha-cov": "0.4.0"
+    "sandboxed-module": "~0.3.0",
+    "sinon": "~1.7.3",
+    "sinon-chai": "~2.4.0"
   }
 }
