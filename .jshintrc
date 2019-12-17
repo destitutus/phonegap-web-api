@@ -1,4 +1,5 @@
 {
+    "esversion": 8,
     "node": true,
     "bitwise"       : true,
     "curly"         : true,
@@ -19,7 +20,7 @@
     "maxdepth"      : 6,
     "maxcomplexity" : 12,
     "maxlen"        : 120,
-    "asi"           : false,
+    "asi"           : true,
     "boss"          : true,
     "debug"         : false,
     "eqnull"        : false,

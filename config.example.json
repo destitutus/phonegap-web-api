@@ -1,19 +1,18 @@
 {
     "api" : {
-        "port" : 1200
+        "port" : 15556
     },
 
     "fs": {
-        "project": "/mnt/data/accounts/{{ user }}/{{ project }}/branches/master",
         "lxcProject": "/mnt/projects/{{ fs }}/{{ project }}/data/project-data/workspace",
         "tmp" : "/tmp/{{ file }}"
     },
 
     "rabbitmq": {
-        "host": "localhost",
+        "host": "databases.codio.test",
         "port": 5672,
-        "login": "guest",
-        "password": "guest",
+        "login": "codio",
+        "password": "codio",
         "vhost": "/",
         "heartbeat": 30,
         "tasks": {
@@ -31,17 +30,18 @@
     },
 
     "database": {
-        "connection": "mongodb://acv2:codio@127.0.0.1:27017/acv2"
+        "connection": "mongodb://acv2:codio@databases.codio.test:27017/acv2"
     },
 
     "log4js": {
-        "appenders": [
-            {
+        "appenders": {
+            "out": { "type": "stdout" },
+            "file": {
                 "type": "file",
-                "filename": "phonegap-web-api.log"
+                "filename": "logs/phonegap-web-api.log"
             }
-        ],
-        "replaceConsole": true,
-        "level": "TRACE"
+        },
+        "categories": { "default": { "appenders": ["file", "out"], "level": "trace" } },
+        "replaceConsole": true
     }
 }
