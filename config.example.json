@@ -26,7 +26,8 @@
             "autoDelete" : false,
             "durable": true,
             "type": "direct"
-        }
+        },
+        "ssl": false
     },
 
     "database": {
